@@ -9,7 +9,7 @@ In this lab, we'll learn how tokenize and vectorize text documents, create an us
 
 You will be able to: 
 
-* Tokenize a corpus of words and identify the different choices to be made while parsing them. 
+* Tokenize a corpus of words and identify the different choices to be made while parsing them
 * Use a Count Vectorization strategy to create a Bag of Words
 * Use TF-IDF Vectorization with multiple documents to identify words that are important/unique to certain documents
 
