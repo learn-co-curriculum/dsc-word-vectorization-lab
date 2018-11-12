@@ -1,17 +1,19 @@
 
-# Word Vectorization Lab
+# Word Vectorization - Lab
 
-## Problem Statement
+## Introduction
 
-In this lab, we'll learn how totokenize and vectorize text documents, create an use a Bag of Words, and identify words unique to individual documents using TF-IDF Vectorization. 
+In this lab, we'll learn how tokenize and vectorize text documents, create an use a Bag of Words, and identify words unique to individual documents using TF-IDF Vectorization. 
 
 ## Objectives
 
+You will be able to: 
+
 * Tokenize a corpus of words and identify the different choices to be made while parsing them. 
 * Use a Count Vectorization strategy to create a Bag of Words
-* Use TF-IDF Vectorization with multiple documents to identify words that are important/unique to certain documents. 
+* Use TF-IDF Vectorization with multiple documents to identify words that are important/unique to certain documents
 
-
+## Let's get started!
 
 Run the cell below to import everything necessary for this lab.  
 
@@ -309,10 +311,10 @@ ________________________________________________________________________________
 
 Both graphs show a basic trend among the red and blue dots, although the 3-dimensional graph is more informative than the 2-dimensional graph.  We see a separation between the two artists because they both have words that they use, but the other artist does not.  The words in each song that are common to both are reduced very small numbers or to 0, because of the log operation in the IDF function.  This means that the elements of each song vector with the highest values will be the ones that have words that are unique to that specific document, or at least are rarely used in others.  
 
-### Conclusion
+## Summary
 
 In this lab, we learned how to: 
-* Tokenize a corpus of words and identify the different choices to be made while parsing them. 
+* Tokenize a corpus of words and identify the different choices to be made while parsing them
 * Use a Count Vectorization strategy to create a Bag of Words
-* Use TF-IDF Vectorization with multiple documents to identify words that are important/unique to certain documents. 
-* Visualize and compare vectorized text documents.
+* Use TF-IDF Vectorization with multiple documents to identify words that are important/unique to certain documents
+* Visualize and compare vectorized text documents
