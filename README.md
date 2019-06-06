@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In this lab, we'll learn how tokenize and vectorize text documents, create an use a Bag of Words, and identify words unique to individual documents using TF-IDF Vectorization. 
+In this lab, we'll learn how tokenize and vectorize text documents, create and use a Bag of Words, and identify words unique to individual documents using TF-IDF Vectorization. 
 
 ## Objectives
 
@@ -62,11 +62,11 @@ with open('data/song11.txt') as f:
 ```
 
     ['[Kendrick Lamar:]\n', "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n', '[Kendrick Lamar:]\n', "Tell me what you gon' do to me\n", "Confrontation ain't nothin' new to me\n", 'You can bring a bullet, bring a sword, bring a morgue\n', "But you can't bring the truth to me\n", 'Fuck you and all your expectations\n', "I don't even want your congratulations\n", 'I recognize your false confidence\n', 'And calculated promises all in your conversation\n', 'I hate people that feel entitled\n', "Look at me crazy 'cause I ain't invite you\n", 'Oh, you important?\n', "You the moral to the story? You endorsin'?\n", "Motherfucker, I don't even like you\n", "Corrupt a man's heart with a gift\n", "That's how you find out who you dealin' with\n", "A small percentage who I'm buildin' with\n", "I want the credit if I'm losin' or I'm winnin'\n", "On my momma, that's the realest shit\n", "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n', 'Skin covered in ego\n', "Get to talkin' like ya involved, like a rebound\n", 'Got no end game, got no reason\n', "Got to stay down, it's the way that you making me feel\n", 'Like nobody ever loved me like you do, you do\n', "You kinda feeling like you're tryna get away from me\n", "If you do, I won't move\n", "I ain't just cryin' for no reason\n", "I ain't just prayin' for no reason\n", 'I give thanks for the days, for the hours\n', "And another way, another life breathin'\n", "I did it all 'cause it feel good\n", "I wouldn't do it at all if it feel bad\n", "Better live your life, we're runnin' out of time\n", '[Kendrick Lamar & SZA:]\n', "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n']
-
+    
 
 ### Tokenizing our Data
 
-Before we can create a Bag of Words or vectorize each document, we need to clean it up and split each song into an array of individual words.  Computers are very particular about strings. If we tokenized our data in it's current state, we would run into the following problems:
+Before we can create a Bag of Words or vectorize each document, we need to clean it up and split each song into an array of individual words.  Computers are very particular about strings. If we tokenized our data in its current state, we would run into the following problems:
 
 1. Counting things that aren't actually words.  In the example above, `"[Kendrick]"` is a note specifying who is speaking, not a lyric contained in the actual song, so it should be removed.  
 1. Punctuation and capitalization would mess up our word counts.  To the python interpreter, `love`, `Love`, `Love?`, and `Love\n` are all unique words, and would all be counted separately.  We need to remove punctuation and capitalization, so that all words will be counted correctly. 
@@ -167,7 +167,7 @@ song_without_brackets
 
 
 
-Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `tokenize()` on it to get a fully tokenized version of the song.  Test this funtion on `song_without_brackets` to ensure that the function works. 
+Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `tokenize()` on it to get a fully tokenized version of the song.  Test this function on `song_without_brackets` to ensure that the function works. 
 
 
 ```python
@@ -234,7 +234,7 @@ Both of these are examples of **_Count Vectorization_**. They allow us to repres
 
 Notice that when we vectorize a sentence this way, we lose the order that the words were in.  This is the **_Bag of Words_** approach mentioned earlier.  Note that sentences that contain the same words will create the same vectors, even if they mean different things--e.g. `'cats are scared of dogs'` and `'dogs are scared of cats'` would both produce the exact same vector, since they contain the same words.  
 
-In the cell below, create a function that takes in a tokenized, cleaned song and returns a Count Vectorized representation of it as a python dictionary. Add in an optional parameter called `vocab` that defaults to `None`. This way, if we are using a vocabulary that contains words not seen in the song, we can still use this function by passing it in to the `vocab` parameter. 
+In the cell below, create a function that takes in a tokenized, cleaned song and returns a Count Vectorized representation of it as a python dictionary. Add in an optional parameter called `vocab` that defaults to `None`. This way, if we are using a vocabulary that contains words not seen in the song, we can still use this function by passing it into the `vocab` parameter. 
 
 **_Hint:_**  Consider using a `set` object to make this easier!
 
@@ -258,7 +258,7 @@ print(test_vectorized)
 ```
 
     {'dreams': 6, 'aint': 4, 'another': 2, 'let': 6, 'prayin': 1, 'promises': 1, 'haunt': 6, 'bring': 4, 'it': 7, 'morgue': 1, 'how': 1, 'i': 15, 'did': 1, 'stars': 18, 'gon': 1, 'tell': 1, 'live': 1, 'in': 2, 'if': 3, 'gift': 1, 'buildin': 1, 'tryna': 1, 'confrontation': 1, 'may': 6, 'false': 1, 'expectations': 1, 'involved': 1, 'days': 1, 'are': 9, 'for': 7, 'crazy': 1, 'who': 2, 'what': 1, 'important': 1, 'bad': 1, 'kinda': 1, 'end': 1, 'but': 1, 'this': 6, 'know': 9, 'covered': 1, 'fuck': 1, 'hoped': 3, 'ego': 1, 'away': 1, 'skin': 1, 'losin': 1, 'shit': 1, 'game': 1, 'that': 8, 'percentage': 1, 'on': 1, 'youre': 1, 'with': 3, 'be': 6, 'no': 4, 'mans': 1, 'momma': 1, 'look': 1, 'nobody': 1, 'about': 3, 'bullet': 1, 'rebound': 1, 'credit': 1, 'time': 1, 'invite': 1, 'lets': 3, 'realest': 1, 'ya': 1, 'cryin': 1, 'heart': 1, 'me': 14, 'to': 6, 'you': 34, 'congratulations': 1, 'like': 6, 'down': 1, 'reason': 3, 'want': 2, 'truth': 1, 'find': 1, 'out': 2, 'winnin': 1, 'recognize': 1, 'conversation': 1, 'confidence': 1, 'motherfucker': 1, 'thanks': 1, 'at': 2, 'small': 1, 'all': 22, 'runnin': 1, 'breathin': 1, 'my': 7, 'wouldnt': 1, 'or': 4, 'endorsin': 1, 'even': 2, 'everything': 3, 'better': 1, 'people': 1, 'moral': 1, 'hate': 1, 'and': 6, 'dont': 2, 'is': 3, 'sword': 1, 'its': 1, 'just': 2, 'anything': 3, 'cause': 2, 'give': 1, 'loved': 1, 'from': 1, 'good': 1, 'the': 38, 'wont': 1, 'can': 1, 'oh': 1, 'get': 2, 'life': 2, 'calculated': 1, 'talk': 3, 'entitled': 1, 'night': 6, 'new': 1, 'ever': 1, 'way': 2, 'approach': 9, 'were': 1, 'feel': 4, 'nothin': 1, 'do': 8, 'thats': 2, 'of': 1, 'talkin': 1, 'got': 3, 'feeling': 7, 'stay': 1, 'move': 1, 'im': 3, 'your': 5, 'making': 1, 'closer': 9, 'hours': 1, 'a': 7, 'might': 6, 'love': 6, 'dealin': 1, 'cant': 1, 'corrupt': 1, 'story': 1}
-
+    
 
 Great! You've just successfully vectorized your first text document! Now, let's look at a more advanced type of vectorization, TF-IDF!
 
@@ -266,7 +266,7 @@ Great! You've just successfully vectorized your first text document! Now, let's 
 
 TF-IDF stands for **_Term Frequency, Inverse Document Frequency_**.  This is a more advanced form of vectorization that weights each term in a document by how unique it is to the given document it is contained in, which allows us to summarize the contents of a document using a few key words.  If the word is used often in many other documents, it is not unique, and therefore probably not too useful if we wanted to figure out how this document is unique in relation to other documents.  Conversely, if a word is used many times in a document, but rarely in all the other documents we are considering, then it is likely a good indicator for telling us that this word is important to the document in question.  
 
-The formula TF-IDF uses to determine the weights of each term in a document is **_Term Frequency_** multipled by **_Inverse Document Frequency_**, where the formula for Term Frequency is:
+The formula TF-IDF uses to determine the weights of each term in a document is **_Term Frequency_** multiplied by **_Inverse Document Frequency_**, where the formula for Term Frequency is:
 
 $$\large Term\ Frequency(t) = \frac{number\ of\ times\ t\ appears\ in\ a\ document} {total\ number\ of\ terms\ in\ the\ document} $$
 <br>
@@ -288,7 +288,7 @@ print(list(test)[10:20])
 ```
 
     ['how', 'i', 'did', 'stars', 'gon', 'tell', 'live', 'in', 'if', 'gift']
-
+    
 
 The formula for Inverse Document Frequency is:  
 <br>  
@@ -331,7 +331,7 @@ def inverse_document_frequency(list_of_dicts):
 
 Now that we can compute both Term Frequency and Inverse Document Frequency, computing an overall TF-IDF value is simple! All we need to do is multiply the two values.  
 
-In the cell below, complete the `tf_idf()` function.  This function should take in a list of dictionaries, just as the `inverse_document_frequency()` function did.  This function return a new list of dictionaries, with each dictionary containing the tf-idf vectorized representation of a corresponding song document. 
+In the cell below, complete the `tf_idf()` function.  This function should take in a list of dictionaries, just as the `inverse_document_frequency()` function did.  This function returns a new list of dictionaries, with each dictionary containing the tf-idf vectorized representation of a corresponding song document. 
 
 **_NOTE:_** Each document should contain the full vocabulary of the entire combined corpus.  
 
@@ -393,7 +393,7 @@ print(list(tf_idf_all_docs[0])[:10])
 ```
 
     ['dreams', 'passage', 'fiery', 'their', 'vincent', 'sea', 'hummed', 'it', 'fourteen', 'gates']
-
+    
 
 ### Visualizing our Vectorizations
 
@@ -401,7 +401,7 @@ Now that we have a tf-idf representation each document, we can move on to the fu
 
 Let's investigate how many dimensions our data currently has.  In the cell below, examine our dataset to figure out how many dimensions our dataset has. 
 
-**_HINT_**: Remember that every word is it's own dimension!
+**_HINT_**: Remember that every word is its own dimension!
 
 
 ```python
@@ -410,7 +410,7 @@ print("Number of Dimensions: {}".format(num_dims))
 ```
 
     Number of Dimensions: 1345
-
+    
 
 That's much too high-dimensional for us to visualize! In order to make it understandable to human eyes, we'll need to reduce dimensionality to 2 or 3 dimensions.  
 
@@ -555,14 +555,14 @@ plt.show()
 ```
 
 
-![png](index_files/index_31_0.png)
+![png](output_31_0.png)
 
 
 
-![png](index_files/index_31_1.png)
+![png](output_31_1.png)
 
 
-Interesting! Take a crack at interpreting these graphs by answering the following question below:
+Interesting! Take a crack at interpreting these graphs by answering the following questions below:
 
 What does each graph mean? Do you find one graph more informative than the other? Do you think that this method shows us discernable differences between Kendrick Lamar songs and Garth Brooks songs?  Use the graphs and your understanding of TF-IDF to support your answer.  
 
