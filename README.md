@@ -42,9 +42,21 @@ To make it easy to read in all of the documents, use a list comprehension to cre
 filenames = None
 ```
 
+Next, create an empty DataFrame called `songs_df`. As we read in the songs and clean them, we'll store them in this DataFrame.
+
+
+```python
+songs_df = None
+```
+
 Next, let's import a single song to see what our text looks like so that we can make sure we clean and tokenize it correctly. 
 
 In the cell below, read in and print out the lyrics from `song11.txt`.  Use vanilla python, no pandas needed.  
+
+
+```python
+# read in song11.txt here
+```
 
 ### Tokenizing our Data
 
