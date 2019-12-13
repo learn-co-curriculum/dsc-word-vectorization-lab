@@ -3,15 +3,16 @@
 
 ## Introduction
 
-In this lab, we'll learn how tokenize and vectorize text documents, create and use a Bag of Words, and identify words unique to individual documents using TF-IDF Vectorization. 
+In this lab, you'll tokenize and vectorize text documents, create and use a bag of words, and identify words unique to individual documents using TF-IDF vectorization. 
+
 
 ## Objectives
 
-You will be able to: 
+In this lab you will:  
 
-* Tokenize a corpus of words and identify the different choices to be made while parsing them
-* Use a Count Vectorization strategy to create a Bag of Words
-* Use TF-IDF Vectorization with multiple documents to identify words that are important/unique to certain documents
+- Implement tokenization and count vectorization from scratch 
+- Implement TF-IDF from scratch 
+- Use dimensionality reduction on vectorized text data to create and interpret visualizations 
 
 ## Let's get started!
 
@@ -40,7 +41,6 @@ To make it easy to read in all of the documents, use a list comprehension to cre
 
 ```python
 filenames = ['song' + str(i) + '.txt' for i in range(1, 21)]
-# filenames
 ```
 
 Next, create an empty DataFrame called `songs_df`.  As we read in the songs and store and clean them, we'll store them in this DataFrame.
@@ -52,7 +52,7 @@ songs_df = pd.DataFrame()
 
 Next, let's import a single song to see what our text looks like so that we can make sure we clean and tokenize it correctly. 
 
-In the cell below, read in and print out the lyrics from `song11.txt`.  Use vanilla python, no pandas needed.  
+In the cell below, read in and print out the lyrics from `song11.txt`.  Use vanilla Python, no pandas needed.  
 
 
 ```python
@@ -62,14 +62,14 @@ with open('data/song11.txt') as f:
 ```
 
     ['[Kendrick Lamar:]\n', "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n', '[Kendrick Lamar:]\n', "Tell me what you gon' do to me\n", "Confrontation ain't nothin' new to me\n", 'You can bring a bullet, bring a sword, bring a morgue\n', "But you can't bring the truth to me\n", 'Fuck you and all your expectations\n', "I don't even want your congratulations\n", 'I recognize your false confidence\n', 'And calculated promises all in your conversation\n', 'I hate people that feel entitled\n', "Look at me crazy 'cause I ain't invite you\n", 'Oh, you important?\n', "You the moral to the story? You endorsin'?\n", "Motherfucker, I don't even like you\n", "Corrupt a man's heart with a gift\n", "That's how you find out who you dealin' with\n", "A small percentage who I'm buildin' with\n", "I want the credit if I'm losin' or I'm winnin'\n", "On my momma, that's the realest shit\n", "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n', 'Skin covered in ego\n', "Get to talkin' like ya involved, like a rebound\n", 'Got no end game, got no reason\n', "Got to stay down, it's the way that you making me feel\n", 'Like nobody ever loved me like you do, you do\n', "You kinda feeling like you're tryna get away from me\n", "If you do, I won't move\n", "I ain't just cryin' for no reason\n", "I ain't just prayin' for no reason\n", 'I give thanks for the days, for the hours\n', "And another way, another life breathin'\n", "I did it all 'cause it feel good\n", "I wouldn't do it at all if it feel bad\n", "Better live your life, we're runnin' out of time\n", '[Kendrick Lamar & SZA:]\n', "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n']
-    
+
 
 ### Tokenizing our Data
 
-Before we can create a Bag of Words or vectorize each document, we need to clean it up and split each song into an array of individual words.  Computers are very particular about strings. If we tokenized our data in its current state, we would run into the following problems:
+Before we can create a bag of words or vectorize each document, we need to clean it up and split each song into an array of individual words. Computers are very particular about strings. If we tokenized our data in its current state, we would run into the following problems:
 
-1. Counting things that aren't actually words.  In the example above, `"[Kendrick]"` is a note specifying who is speaking, not a lyric contained in the actual song, so it should be removed.  
-1. Punctuation and capitalization would mess up our word counts.  To the python interpreter, `love`, `Love`, `Love?`, and `Love\n` are all unique words, and would all be counted separately.  We need to remove punctuation and capitalization, so that all words will be counted correctly. 
+- Counting things that aren't actually words.  In the example above, `"[Kendrick]"` is a note specifying who is speaking, not a lyric contained in the actual song, so it should be removed.  
+- Punctuation and capitalization would mess up our word counts. To the Python interpreter, `love`, `Love`, `Love?`, and `Love\n` are all unique words, and would all be counted separately.  We need to remove punctuation and capitalization, so that all words will be counted correctly. 
 
 Consider the following sentences from the example above:
 
@@ -79,13 +79,13 @@ After tokenization, this should look like:
 
 `['love', 'let's', 'talk', 'about', 'love', 'is', 'it', 'anything', 'and', 'everything', 'you', 'hoped', 'for']`
 
-Tokenization is pretty tedious if we handle it manually, and would probably make use of Regular Expressions, which is outside the scope of this lab.  In order to keep this lab moving, we'll use a library function to clean and tokenize our data so that we can move onto vectorization.  
+Tokenization is pretty tedious if we handle it manually, and would probably make use of regular expressions, which is outside the scope of this lab. In order to keep this lab moving, we'll use a library function to clean and tokenize our data so that we can move onto vectorization.  
 
 Tokenization is a required task for just about any Natural Language Processing (NLP) task, so great industry-standard tools exist to tokenize things for us, so that we can spend our time on more important tasks without getting bogged down hunting every special symbol or punctuation in a massive dataset. For this lab, we'll make use of the tokenizer in the amazing `nltk` library, which is short for _Natural Language Tool Kit_.
 
 **_NOTE:_** NLTK requires extra installation methods to be run the first time certain methods are used.  If `nltk` throws you an error about needing to install additional packages, follow the instructions in the error message to install the dependencies, and then rerun the cell.  
 
-Before we tokenize our songs, we'll do only a small manual bit of cleaning.  In the cell below, write a function that allows us to remove lines that have `['artist names']` in it, to ensure that our song files contain only lyrics that are actually in the song. For the lines that remain, make every word lowercase, remove newline characters `\n`, and any of the following punctuation marks: `",.'?!"`
+Before we tokenize our songs, we'll do only a small manual bit of cleaning. In the cell below, write a function that allows us to remove lines that have `['artist names']` in it, to ensure that our song files contain only lyrics that are actually in the song. For the lines that remain, make every word lowercase, remove newline characters `\n`, and all the following punctuation marks: `",.'?!"`
 
 Test the function on `test_song` to show that it has successfully removed `'[Kendrick Lamar:]'` and other instances of artist names from the song and returned it.  
 
@@ -197,11 +197,12 @@ tokenized_test_song[:10]
 
 
 
-Great! Now that we know the ability to tokenize our songs, we can move onto Vectorization. 
+Great! Now that we can tokenize our songs, we can move onto vectorization. 
+
 
 ### Count Vectorization
 
-Machine Learning algorithms don't understand strings.  However, they do understand math, which means they understand vectors and matrices.  By **_Vectorizing_** the text, we just convert the entire text into a vector, where each element in the vector represents a different word.  The vector is the length of the entire vocabulary--usually, every word that occurs in the English language, or at least every word that appears in our corpus.  Any given sentence can then be represented as a vector where all the vector is 1 (or some other value) for each time that word appears in the sentence. 
+Machine Learning algorithms don't understand strings. However, they do understand math, which means they understand vectors and matrices.  By **_Vectorizing_** the text, we just convert the entire text into a vector, where each element in the vector represents a different word. The vector is the length of the entire vocabulary -- usually, every word that occurs in the English language, or at least every word that appears in our corpus.  Any given sentence can then be represented as a vector where all the vector is 1 (or some other value) for each time that word appears in the sentence. 
 
 Consider the following example: 
 
@@ -213,7 +214,7 @@ Consider the following example:
 
 This is called a **_Sparse Representation_**, since the strong majority of the columns will have a value of 0.  Note that elements corresponding to words that do not occur in the sentence have a value of 0, while words that do appear in the sentence have a value of 1 (or 1 for each time it appears in the sentence).
 
-Alternatively, we can represent this sentence as a plain old python dictionary of word frequency counts:
+Alternatively, we can represent this sentence as a plain old Python dictionary of word frequency counts:
 
 ```python
 BoW = {
@@ -232,11 +233,11 @@ Both of these are examples of **_Count Vectorization_**. They allow us to repres
 
 #### Positional Information and Bag of Words
 
-Notice that when we vectorize a sentence this way, we lose the order that the words were in.  This is the **_Bag of Words_** approach mentioned earlier.  Note that sentences that contain the same words will create the same vectors, even if they mean different things--e.g. `'cats are scared of dogs'` and `'dogs are scared of cats'` would both produce the exact same vector, since they contain the same words.  
+Notice that when we vectorize a sentence this way, we lose the order that the words were in.  This is the **_Bag of Words_** approach mentioned earlier.  Note that sentences that contain the same words will create the same vectors, even if they mean different things -- e.g. `'cats are scared of dogs'` and `'dogs are scared of cats'` would both produce the exact same vector, since they contain the same words.  
 
-In the cell below, create a function that takes in a tokenized, cleaned song and returns a Count Vectorized representation of it as a python dictionary. Add in an optional parameter called `vocab` that defaults to `None`. This way, if we are using a vocabulary that contains words not seen in the song, we can still use this function by passing it into the `vocab` parameter. 
+In the cell below, create a function that takes in a tokenized, cleaned song and returns a count vectorized representation of it as a Python dictionary. Add in an optional parameter called `vocab` that defaults to `None`. This way, if we are using a vocabulary that contains words not seen in the song, we can still use this function by passing it into the `vocab` parameter. 
 
-**_Hint:_**  Consider using a `set` object to make this easier!
+**_Hint:_**  Consider using a `set()` to make this easier!
 
 
 ```python
@@ -258,13 +259,13 @@ print(test_vectorized)
 ```
 
     {'dreams': 6, 'aint': 4, 'another': 2, 'let': 6, 'prayin': 1, 'promises': 1, 'haunt': 6, 'bring': 4, 'it': 7, 'morgue': 1, 'how': 1, 'i': 15, 'did': 1, 'stars': 18, 'gon': 1, 'tell': 1, 'live': 1, 'in': 2, 'if': 3, 'gift': 1, 'buildin': 1, 'tryna': 1, 'confrontation': 1, 'may': 6, 'false': 1, 'expectations': 1, 'involved': 1, 'days': 1, 'are': 9, 'for': 7, 'crazy': 1, 'who': 2, 'what': 1, 'important': 1, 'bad': 1, 'kinda': 1, 'end': 1, 'but': 1, 'this': 6, 'know': 9, 'covered': 1, 'fuck': 1, 'hoped': 3, 'ego': 1, 'away': 1, 'skin': 1, 'losin': 1, 'shit': 1, 'game': 1, 'that': 8, 'percentage': 1, 'on': 1, 'youre': 1, 'with': 3, 'be': 6, 'no': 4, 'mans': 1, 'momma': 1, 'look': 1, 'nobody': 1, 'about': 3, 'bullet': 1, 'rebound': 1, 'credit': 1, 'time': 1, 'invite': 1, 'lets': 3, 'realest': 1, 'ya': 1, 'cryin': 1, 'heart': 1, 'me': 14, 'to': 6, 'you': 34, 'congratulations': 1, 'like': 6, 'down': 1, 'reason': 3, 'want': 2, 'truth': 1, 'find': 1, 'out': 2, 'winnin': 1, 'recognize': 1, 'conversation': 1, 'confidence': 1, 'motherfucker': 1, 'thanks': 1, 'at': 2, 'small': 1, 'all': 22, 'runnin': 1, 'breathin': 1, 'my': 7, 'wouldnt': 1, 'or': 4, 'endorsin': 1, 'even': 2, 'everything': 3, 'better': 1, 'people': 1, 'moral': 1, 'hate': 1, 'and': 6, 'dont': 2, 'is': 3, 'sword': 1, 'its': 1, 'just': 2, 'anything': 3, 'cause': 2, 'give': 1, 'loved': 1, 'from': 1, 'good': 1, 'the': 38, 'wont': 1, 'can': 1, 'oh': 1, 'get': 2, 'life': 2, 'calculated': 1, 'talk': 3, 'entitled': 1, 'night': 6, 'new': 1, 'ever': 1, 'way': 2, 'approach': 9, 'were': 1, 'feel': 4, 'nothin': 1, 'do': 8, 'thats': 2, 'of': 1, 'talkin': 1, 'got': 3, 'feeling': 7, 'stay': 1, 'move': 1, 'im': 3, 'your': 5, 'making': 1, 'closer': 9, 'hours': 1, 'a': 7, 'might': 6, 'love': 6, 'dealin': 1, 'cant': 1, 'corrupt': 1, 'story': 1}
-    
+
 
 Great! You've just successfully vectorized your first text document! Now, let's look at a more advanced type of vectorization, TF-IDF!
 
 ### TF-IDF Vectorization
 
-TF-IDF stands for **_Term Frequency, Inverse Document Frequency_**.  This is a more advanced form of vectorization that weights each term in a document by how unique it is to the given document it is contained in, which allows us to summarize the contents of a document using a few key words.  If the word is used often in many other documents, it is not unique, and therefore probably not too useful if we wanted to figure out how this document is unique in relation to other documents.  Conversely, if a word is used many times in a document, but rarely in all the other documents we are considering, then it is likely a good indicator for telling us that this word is important to the document in question.  
+TF-IDF stands for **_Term Frequency, Inverse Document Frequency_**.  This is a more advanced form of vectorization that weighs each term in a document by how unique it is to the given document it is contained in, which allows us to summarize the contents of a document using a few key words.  If the word is used often in many other documents, it is not unique, and therefore probably not too useful if we wanted to figure out how this document is unique in relation to other documents. Conversely, if a word is used many times in a document, but rarely in all the other documents we are considering, then it is likely a good indicator for telling us that this word is important to the document in question.  
 
 The formula TF-IDF uses to determine the weights of each term in a document is **_Term Frequency_** multiplied by **_Inverse Document Frequency_**, where the formula for Term Frequency is:
 
@@ -288,14 +289,14 @@ print(list(test)[10:20])
 ```
 
     ['how', 'i', 'did', 'stars', 'gon', 'tell', 'live', 'in', 'if', 'gift']
-    
+
+
+Now that we have this, we can easily calculate _Inverse Document Frequency_.  In the cell below, complete the following function.  this function should take in the list of dictionaries, with each item in the list being a bag of words representing the words in a different song. The function should return a dictionary containing the inverse document frequency values for each word.  
 
 The formula for Inverse Document Frequency is:  
 <br>  
 <br>
 $$\large  IDF(t) =  log_e(\frac{Total\ Number\ of\ Documents}{Number\ of\ Documents\ with\ t\ in\ it})$$
-
-Now that we have this, we can easily calculate _Inverse Document Frequency_.  In the cell below, complete the following function.  this function should take in the list of dictionaries, with each item in the list being a Bag of Words representing the words in a different song. The function should return a dictionary containing the inverse document frequency values for each word.  
 
 
 ```python
@@ -360,12 +361,12 @@ def tf_idf(list_of_dicts):
 
 Now that we've created all the necessary helper functions, we can load in all of our documents and run each through the vectorization pipeline we've just created.
 
-In the cell below, complete the `main` function.  This function should take in a list of file names (provided for you in the `filenames` list we created at the start), and then:
+In the cell below, complete the `main()` function.  This function should take in a list of file names (provided for you in the `filenames` list we created at the start), and then:
 
-1. Read in each document
-1. Tokenize each document
-1. Convert each document to a Bag of Words (dictionary representation)
-1. Return a list of dictionaries vectorized using tf-idf, where each dictionary is a vectorized representation of a document.  
+- Read in each document
+- Tokenize each document
+- Convert each document to a bag of words (dictionary representation)
+- Return a list of dictionaries vectorized using tf-idf, where each dictionary is a vectorized representation of a document 
 
 
 ```python
@@ -393,13 +394,13 @@ print(list(tf_idf_all_docs[0])[:10])
 ```
 
     ['dreams', 'passage', 'fiery', 'their', 'vincent', 'sea', 'hummed', 'it', 'fourteen', 'gates']
-    
+
 
 ### Visualizing our Vectorizations
 
-Now that we have a tf-idf representation each document, we can move on to the fun part--visualizing everything!
+Now that we have a tf-idf representation of each document, we can move on to the fun part -- visualizing everything!
 
-Let's investigate how many dimensions our data currently has.  In the cell below, examine our dataset to figure out how many dimensions our dataset has. 
+In the cell below, examine our dataset to figure out how many dimensions our dataset has. 
 
 **_HINT_**: Remember that every word is its own dimension!
 
@@ -410,15 +411,15 @@ print("Number of Dimensions: {}".format(num_dims))
 ```
 
     Number of Dimensions: 1345
-    
 
-That's much too high-dimensional for us to visualize! In order to make it understandable to human eyes, we'll need to reduce dimensionality to 2 or 3 dimensions.  
 
-To do this, we'll use a technique called **_t-SNE_** (short for _t-Stochastic Neighbors Embedding_).  This is too complex for us to code ourselves, so we'll make use of sklearn's implementation of it.  
+There are too many dimensions for us to visualize! In order to make it understandable to human eyes, we'll need to reduce it to 2 or 3 dimensions.  
 
-First, we need to pull the words out of the dictionaries stored in `tf_idf_all_docs` so that only the values remain, and store them in lists instead of dictionaries.  This is because the t-SNE object only works with Array-like objects, not dictionaries.  
+To do this, we'll use a technique called **_t-SNE_** (short for _t-Stochastic Neighbors Embedding_).  This is too complex for us to code ourselves, so we'll make use of scikit-learn's implementation of it.  
 
-In the cell below, create a list of lists that contains a list representation of the values of each of the dictionaries stored in `tf_idf_all_docs`.  The same structure should remain--e.g. the first list should contain only the values that were in the 1st dictionary in `tf_idf_all_docs`, and so on. 
+First, we need to pull the words out of the dictionaries stored in `tf_idf_all_docs` so that only the values remain, and store them in lists instead of dictionaries.  This is because the t-SNE only works with array-like objects, not dictionaries.  
+
+In the cell below, create a list of lists that contains a list representation of the values of each of the dictionaries stored in `tf_idf_all_docs`.  The same structure should remain -- e.g. the first list should contain only the values that were in the first dictionary in `tf_idf_all_docs`, and so on. 
 
 
 ```python
@@ -446,7 +447,7 @@ tf_idf_vals_list[0][:10]
 
 
 
-Now that we have only the values, we can use the `TSNE` object from `sklearn` to transform our data appropriately.  In the cell below, create a `TSNE` with `n_components=3` passed in as a parameter.  Then, use the created object's `fit_transform()` method to transform the data stored in `tf_idf_vals_list` into 3-dimensional data.  Then, inspect the newly transformed data to confirm that it has the correct dimensionality. 
+Now that we have only the values, we can use the `TSNE()` class from `sklearn` to transform our data appropriately.  In the cell below, instantiate `TSNE()` with `n_components=3`.  Then, use the created object's `.fit_transform()` method to transform the data stored in `tf_idf_vals_list` into 3-dimensional data.  Then, inspect the newly transformed data to confirm that it has the correct dimensionality. 
 
 
 ```python
@@ -481,7 +482,7 @@ transformed_data_3d
 
 
 
-We'll also want to check out how the visualization looks in 2d.  Repeat the process above, but this time, create a `TSNE` object with 2 components instead of 3.  Again, use `fit_transform()` to transform the data and store it in the variable below, and then inspect it to confirm the transformed data has only 2 dimensions. 
+We'll also want to check out how the visualization looks in 2d.  Repeat the process above, but this time, instantiate `TSNE()` with 2 components instead of 3.  Again, use `.fit_transform()` to transform the data and store it in the variable below, and then inspect it to confirm the transformed data has only 2 dimensions. 
 
 
 ```python
@@ -516,7 +517,7 @@ transformed_data_2d
 
 
 
-Now, let's visualize everything!  Run the cell below to a 3D visualization of the songs.
+Now, let's visualize everything!  Run the cell below to view both 3D and 2D visualizations of the songs.
 
 
 ```python
@@ -555,11 +556,11 @@ plt.show()
 ```
 
 
-![png](output_31_0.png)
+![png](index_files/index_31_0.png)
 
 
 
-![png](output_31_1.png)
+![png](index_files/index_31_1.png)
 
 
 Interesting! Take a crack at interpreting these graphs by answering the following questions below:
@@ -569,12 +570,12 @@ What does each graph mean? Do you find one graph more informative than the other
 Write your answer to this question below this line:
 ________________________________________________________________________________________________________________________________
 
-Both graphs show a basic trend among the red and blue dots, although the 3-dimensional graph is more informative than the 2-dimensional graph.  We see a separation between the two artists because they both have words that they use, but the other artist does not.  The words in each song that are common to both are reduced very small numbers or to 0, because of the log operation in the IDF function.  This means that the elements of each song vector with the highest values will be the ones that have words that are unique to that specific document, or at least are rarely used in others.  
+Both graphs show a basic trend among the red and blue dots, although the 3-dimensional graph is more informative than the 2-dimensional graph. We see a separation between the two artists because they both have words that they use, but the other artist does not. The words in each song that are common to both are reduced to very small numbers or to 0, because of the log operation in the IDF function.  This means that the elements of each song vector with the highest values will be the ones that have words that are unique to that specific document, or at least are rarely used in others.  
 
 ## Summary
 
-In this lab, we learned how to: 
+In this lab, you learned how to: 
 * Tokenize a corpus of words and identify the different choices to be made while parsing them 
-* Use a Count Vectorization strategy to create a Bag of Words
-* Use TF-IDF Vectorization with multiple documents to identify words that are important/unique to certain documents
+* Use a count vectorization strategy to create a bag of words
+* Use TF-IDF vectorization with multiple documents to identify words that are important/unique to certain documents
 * Visualize and compare vectorized text documents
