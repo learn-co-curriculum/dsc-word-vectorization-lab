@@ -132,6 +132,7 @@ print(song_without_brackets)
 
 
 ```python
+# __SOLUTION__ 
 def clean_song(song):
     cleaned_song = []
     for line in song:
@@ -221,6 +222,7 @@ tokenized_test_song[:10]
 
 
 ```python
+# __SOLUTION__ 
 def tokenize(song):
     joined_song = ' '.join(song)
     tokenized_song = word_tokenize(joined_song)
@@ -300,6 +302,7 @@ print(test_vectorized)
 
 
 ```python
+# __SOLUTION__ 
 def count_vectorize(song, vocab=None):
     if vocab:
         unique_words = vocab
@@ -344,6 +347,7 @@ print(list(test)[10:20])
 
 
 ```python
+# __SOLUTION__ 
 def term_frequency(BoW_dict):
     total_word_count = sum(BoW_dict.values())
     
@@ -374,6 +378,7 @@ def inverse_document_frequency(list_of_dicts):
 
 
 ```python
+# __SOLUTION__ 
 def inverse_document_frequency(list_of_dicts):
     vocab_set = set()
     # Iterate through list of dfs and add index to vocab_set
@@ -418,6 +423,7 @@ def tf_idf(list_of_dicts):
 
 
 ```python
+# __SOLUTION__ 
 def tf_idf(list_of_dicts):
     # Create empty dictionary containing full vocabulary of entire corpus
     doc_tf_idf = {}
@@ -459,6 +465,7 @@ print(list(tf_idf_all_docs[0])[:10])
 
 
 ```python
+# __SOLUTION__ 
 def main(filenames):
     # Iterate through list of filenames and read each in
     count_vectorized_all_documents = []
@@ -501,6 +508,7 @@ print("Number of Dimensions: {}".format(num_dims))
 
 
 ```python
+# __SOLUTION__ 
 num_dims = len(tf_idf_all_docs[0])
 print("Number of Dimensions: {}".format(num_dims))
 ```
@@ -528,6 +536,7 @@ tf_idf_vals_list[0][:10]
 
 
 ```python
+# __SOLUTION__ 
 tf_idf_vals_list = []
 
 for i in tf_idf_all_docs:
@@ -563,6 +572,7 @@ transformed_data_3d
 
 
 ```python
+# __SOLUTION__ 
 t_sne_object_3d = TSNE(n_components=3)
 transformed_data_3d = t_sne_object_3d.fit_transform(tf_idf_vals_list)
 transformed_data_3d
@@ -605,6 +615,7 @@ transformed_data_2d
 
 
 ```python
+# __SOLUTION__ 
 t_sne_object_2d = TSNE(n_components=2)
 transformed_data_2d = t_sne_object_2d.fit_transform(tf_idf_vals_list)
 transformed_data_2d
@@ -676,6 +687,7 @@ plt.show()
 
 
 ```python
+# __SOLUTION__ 
 kendrick_3d = transformed_data_3d[10:]
 k3_x = [i[0] for i in kendrick_3d]
 k3_y = [i[1] for i in kendrick_3d]
