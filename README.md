@@ -94,7 +94,7 @@ song_without_brackets = None
 print(song_without_brackets)
 ```
 
-Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `tokenize()` on it to get a fully tokenized version of the song.  Test this function on `song_without_brackets` to ensure that the function works. 
+Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `nltk.word_tokenize()` on it to get a fully tokenized version of the song.  Test this function on `song_without_brackets` to ensure that the function works. 
 
 
 ```python
@@ -167,7 +167,7 @@ The formula TF-IDF uses to determine the weights of each term in a document is *
 $$\large Term\ Frequency(t) = \frac{number\ of\ times\ t\ appears\ in\ a\ document} {total\ number\ of\ terms\ in\ the\ document} $$
 <br>
 <br>
-Complete the following function below to calculate term frequency for every term in a document.  
+Complete the following function below to calculate term frequency for every term in a document.  Your function should take a vectorized bag of words dictionary and return a dictionary of word/frequency pairs according to the above formula.
 
 
 ```python
