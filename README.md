@@ -1,4 +1,3 @@
-
 # Word Vectorization - Lab
 
 ## Introduction
@@ -94,7 +93,7 @@ song_without_brackets = None
 print(song_without_brackets)
 ```
 
-Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `tokenize()` on it to get a fully tokenized version of the song.  Test this function on `song_without_brackets` to ensure that the function works. 
+Great. Now, write a function `tokenize()` that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `word_tokenize()` on it to get a fully tokenized version of the song.  Test this function on `song_without_brackets` to ensure that the function works. 
 
 
 ```python
