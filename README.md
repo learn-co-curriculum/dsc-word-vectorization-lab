@@ -1,4 +1,3 @@
-
 # Word Vectorization - Lab
 
 ## Introduction
@@ -209,7 +208,7 @@ song_without_brackets
 
 
 
-Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `tokenize()` on it to get a fully tokenized version of the song.  Test this function on `song_without_brackets` to ensure that the function works. 
+Great. Now, write a function `tokenize()` that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `word_tokenize()` on it to get a fully tokenized version of the song.  Test this function on `song_without_brackets` to ensure that the function works. 
 
 
 ```python
@@ -320,7 +319,7 @@ test_vectorized = count_vectorize(tokenized_test_song)
 print(test_vectorized)
 ```
 
-    {'dreams': 6, 'aint': 4, 'another': 2, 'let': 6, 'prayin': 1, 'promises': 1, 'haunt': 6, 'bring': 4, 'it': 7, 'morgue': 1, 'how': 1, 'i': 15, 'did': 1, 'stars': 18, 'gon': 1, 'tell': 1, 'live': 1, 'in': 2, 'if': 3, 'gift': 1, 'buildin': 1, 'tryna': 1, 'confrontation': 1, 'may': 6, 'false': 1, 'expectations': 1, 'involved': 1, 'days': 1, 'are': 9, 'for': 7, 'crazy': 1, 'who': 2, 'what': 1, 'important': 1, 'bad': 1, 'kinda': 1, 'end': 1, 'but': 1, 'this': 6, 'know': 9, 'covered': 1, 'fuck': 1, 'hoped': 3, 'ego': 1, 'away': 1, 'skin': 1, 'losin': 1, 'shit': 1, 'game': 1, 'that': 8, 'percentage': 1, 'on': 1, 'youre': 1, 'with': 3, 'be': 6, 'no': 4, 'mans': 1, 'momma': 1, 'look': 1, 'nobody': 1, 'about': 3, 'bullet': 1, 'rebound': 1, 'credit': 1, 'time': 1, 'invite': 1, 'lets': 3, 'realest': 1, 'ya': 1, 'cryin': 1, 'heart': 1, 'me': 14, 'to': 6, 'you': 34, 'congratulations': 1, 'like': 6, 'down': 1, 'reason': 3, 'want': 2, 'truth': 1, 'find': 1, 'out': 2, 'winnin': 1, 'recognize': 1, 'conversation': 1, 'confidence': 1, 'motherfucker': 1, 'thanks': 1, 'at': 2, 'small': 1, 'all': 22, 'runnin': 1, 'breathin': 1, 'my': 7, 'wouldnt': 1, 'or': 4, 'endorsin': 1, 'even': 2, 'everything': 3, 'better': 1, 'people': 1, 'moral': 1, 'hate': 1, 'and': 6, 'dont': 2, 'is': 3, 'sword': 1, 'its': 1, 'just': 2, 'anything': 3, 'cause': 2, 'give': 1, 'loved': 1, 'from': 1, 'good': 1, 'the': 38, 'wont': 1, 'can': 1, 'oh': 1, 'get': 2, 'life': 2, 'calculated': 1, 'talk': 3, 'entitled': 1, 'night': 6, 'new': 1, 'ever': 1, 'way': 2, 'approach': 9, 'were': 1, 'feel': 4, 'nothin': 1, 'do': 8, 'thats': 2, 'of': 1, 'talkin': 1, 'got': 3, 'feeling': 7, 'stay': 1, 'move': 1, 'im': 3, 'your': 5, 'making': 1, 'closer': 9, 'hours': 1, 'a': 7, 'might': 6, 'love': 6, 'dealin': 1, 'cant': 1, 'corrupt': 1, 'story': 1}
+    {'conversation': 1, 'to': 6, 'know': 9, 'days': 1, 'down': 1, 'story': 1, 'im': 3, 'good': 1, 'even': 2, 'stars': 18, 'dont': 2, 'stay': 1, 'youre': 1, 'making': 1, 'feeling': 7, 'nobody': 1, 'night': 6, 'congratulations': 1, 'me': 14, 'all': 22, 'ever': 1, 'endorsin': 1, 'credit': 1, 'look': 1, 'thanks': 1, 'tell': 1, 'nothin': 1, 'find': 1, 'you': 34, 'on': 1, 'were': 1, 'bullet': 1, 'important': 1, 'haunt': 6, 'confrontation': 1, 'crazy': 1, 'gift': 1, 'get': 2, 'let': 6, 'time': 1, 'false': 1, 'in': 2, 'love': 6, 'losin': 1, 'new': 1, 'realest': 1, 'confidence': 1, 'be': 6, 'entitled': 1, 'corrupt': 1, 'are': 9, 'dreams': 6, 'closer': 9, 'at': 2, 'reason': 3, 'what': 1, 'gon': 1, 'tryna': 1, 'people': 1, 'mans': 1, 'sword': 1, 'life': 2, 'thats': 2, 'just': 2, 'want': 2, 'prayin': 1, 'how': 1, 'better': 1, 'dealin': 1, 'with': 3, 'it': 7, 'kinda': 1, 'give': 1, 'end': 1, 'small': 1, 'from': 1, 'percentage': 1, 'bring': 4, 'can': 1, 'might': 6, 'live': 1, 'shit': 1, 'did': 1, 'game': 1, 'its': 1, 'way': 2, 'that': 8, 'ego': 1, 'this': 6, 'but': 1, 'truth': 1, 'rebound': 1, 'promises': 1, 'or': 4, 'loved': 1, 'motherfucker': 1, 'hate': 1, 'oh': 1, 'the': 38, 'covered': 1, 'cryin': 1, 'aint': 4, 'buildin': 1, 'do': 8, 'invite': 1, 'for': 7, 'your': 5, 'is': 3, 'calculated': 1, 'fuck': 1, 'like': 6, 'breathin': 1, 'lets': 3, 'talk': 3, 'my': 7, 'if': 3, 'runnin': 1, 'feel': 4, 'of': 1, 'expectations': 1, 'talkin': 1, 'ya': 1, 'hours': 1, 'a': 7, 'another': 2, 'cant': 1, 'got': 3, 'about': 3, 'moral': 1, 'out': 2, 'momma': 1, 'winnin': 1, 'morgue': 1, 'involved': 1, 'i': 15, 'recognize': 1, 'and': 6, 'cause': 2, 'everything': 3, 'approach': 9, 'away': 1, 'wont': 1, 'bad': 1, 'who': 2, 'skin': 1, 'move': 1, 'may': 6, 'anything': 3, 'no': 4, 'hoped': 3, 'wouldnt': 1, 'heart': 1}
 
 
 Great! You've just successfully vectorized your first text document! Now, let's look at a more advanced type of vectorization, TF-IDF!
@@ -360,7 +359,7 @@ test = term_frequency(test_vectorized)
 print(list(test)[10:20])
 ```
 
-    ['how', 'i', 'did', 'stars', 'gon', 'tell', 'live', 'in', 'if', 'gift']
+    ['dont', 'stay', 'youre', 'making', 'feeling', 'nobody', 'night', 'congratulations', 'me', 'all']
 
 
 Now that we have this, we can easily calculate _Inverse Document Frequency_.  In the cell below, complete the following function.  this function should take in the list of dictionaries, with each item in the list being a bag of words representing the words in a different song. The function should return a dictionary containing the inverse document frequency values for each word.  
@@ -489,7 +488,7 @@ tf_idf_all_docs = main(filenames)
 print(list(tf_idf_all_docs[0])[:10])
 ```
 
-    ['dreams', 'passage', 'fiery', 'their', 'vincent', 'sea', 'hummed', 'it', 'fourteen', 'gates']
+    ['raised', 'runneth', '9', 'to', 'jc', 'know', 'gates', 'passed', 'borderline', 'letters']
 
 
 ### Visualizing our Vectorizations
@@ -513,7 +512,7 @@ num_dims = len(tf_idf_all_docs[0])
 print("Number of Dimensions: {}".format(num_dims))
 ```
 
-    Number of Dimensions: 1345
+    Number of Dimensions: 1344
 
 
 There are too many dimensions for us to visualize! In order to make it understandable to human eyes, we'll need to reduce it to 2 or 3 dimensions.  
@@ -548,16 +547,16 @@ tf_idf_vals_list[0][:10]
 
 
 
-    [0.023713999811073517,
+    [0.009133330102298753,
      0.027399990306896257,
+     0.0035369970706513763,
+     0.00012855462252518916,
+     0.009133330102298753,
+     0.0017878443305199617,
      0.027399990306896257,
-     0.00854558551750397,
      0.009133330102298753,
-     0.027399990306896257,
      0.009133330102298753,
-     0.0005592570208376184,
-     0.009133330102298753,
-     0.027399990306896257]
+     0.009133330102298753]
 
 
 
@@ -581,26 +580,26 @@ transformed_data_3d
 
 
 
-    array([[  -12.992137,    37.804897,  -208.84592 ],
-           [  684.0743  ,  -794.5156  ,     8.946459],
-           [    2.278559,   528.1361  ,   -98.87345 ],
-           [ -882.53864 ,   730.9954  ,  -285.27332 ],
-           [   45.91121 ,  -359.6656  ,   234.38834 ],
-           [  -97.61815 ,   299.00665 ,  -793.7565  ],
-           [  203.51263 ,  -224.95358 ,   -93.26531 ],
-           [ -184.45418 ,    85.74047 ,   290.68585 ],
-           [ -105.4274  ,   271.64078 ,    31.432402],
-           [  270.58102 ,   222.44731 ,   -24.840424],
-           [  177.59155 ,  -409.02722 ,   602.4249  ],
-           [  265.7553  ,   269.30267 ,   328.07343 ],
-           [ -310.63098 ,  -204.7601  ,   382.46536 ],
-           [  186.82774 ,    21.257849,  -457.13504 ],
-           [ -167.31094 ,  -269.02023 ,   -25.100863],
-           [  963.3193  , -1011.96313 ,   257.2696  ],
-           [  124.95008 ,   -22.056746,   187.5066  ],
-           [ -340.29037 ,    29.874846,   -50.913094],
-           [ -528.3744  ,  1128.4409  ,   -95.192024],
-           [ -845.83185 ,  -242.78752 ,  -501.2561  ]], dtype=float32)
+    array([[ -85.04439  ,  -12.42539  ,  160.53555  ],
+           [  -3.4193013, -217.31935  ,   23.678131 ],
+           [-181.40318  ,   37.18949  , -279.00134  ],
+           [-168.894    ,  165.66945  ,   74.69088  ],
+           [ 174.79863  ,  -41.690086 ,  301.93756  ],
+           [  38.269165 ,  151.16583  ,   93.36936  ],
+           [  31.328133 , -244.56982  , -167.79346  ],
+           [  27.850698 ,   95.67248  ,  277.84744  ],
+           [-125.99564  ,   96.77036  , -110.62522  ],
+           [ 250.55006  ,  192.88551  , -168.65764  ],
+           [-146.47461  , -198.77888  ,  159.63432  ],
+           [ 146.62701  ,   29.345417 , -164.25223  ],
+           [ 192.62463  , -140.5079   ,  -58.02724  ],
+           [ 174.86421  ,  246.83163  ,   14.580853 ],
+           [  19.869684 ,  211.12953  , -123.161224 ],
+           [-216.70706  ,  -50.75892  ,    5.941306 ],
+           [-107.28444  , -112.47715  , -158.13704  ],
+           [ 247.58127  ,   34.86669  ,   84.8679   ],
+           [  21.53436  ,   -9.539048 ,  -21.645472 ],
+           [ 107.66281  , -111.01468  ,  139.19974  ]], dtype=float32)
 
 
 
@@ -624,26 +623,26 @@ transformed_data_2d
 
 
 
-    array([[-129.33768  ,   32.315887 ],
-           [  37.011868 ,  -77.01625  ],
-           [ -24.536522 ,  152.57635  ],
-           [ -90.63666  ,   99.16198  ],
-           [-143.8061   ,  -46.2448   ],
-           [ -55.347694 ,   30.439142 ],
-           [ -95.97229  , -115.90211  ],
-           [  72.67015  ,   50.841705 ],
-           [  -4.5910316, -150.6982   ],
-           [  14.4173765,   29.41396  ],
-           [ 138.14459  ,    7.684495 ],
-           [ -32.61266  ,  -86.24842  ],
-           [  51.281906 ,  122.03984  ],
-           [  78.18397  , -133.86229  ],
-           [ 120.117874 ,  -66.83362  ],
-           [  -7.8837066,  -26.147024 ],
-           [ 128.90428  ,   91.89491  ],
-           [ -13.914132 ,   84.22321  ],
-           [ -75.57968  ,  -31.526733 ],
-           [  65.113556 ,  -17.299585 ]], dtype=float32)
+    array([[ -57.13      ,  -82.44527   ],
+           [-149.95668   , -100.78645   ],
+           [  17.649107  ,  127.99021   ],
+           [-136.68973   ,   99.35129   ],
+           [ 211.75693   ,   81.607994  ],
+           [ 197.99387   ,  -44.276165  ],
+           [ 135.04065   ,   29.907883  ],
+           [  55.82382   ,  212.21283   ],
+           [ -67.15371   ,  175.84656   ],
+           [ -93.41145   ,   -1.3688639 ],
+           [  -0.96264917,  -14.616862  ],
+           [ -57.00879   , -177.24257   ],
+           [-185.9646    ,    5.108982  ],
+           [  87.43467   ,  -41.514145  ],
+           [ -43.565823  ,   67.657135  ],
+           [  53.59356   , -193.05151   ],
+           [  29.162214  , -103.39789   ],
+           [  51.815746  ,   49.444122  ],
+           [ 118.36375   ,  128.68997   ],
+           [ 136.48239   , -126.846825  ]], dtype=float32)
 
 
 
@@ -723,11 +722,15 @@ plt.show()
 ```
 
 
+    
 ![png](index_files/index_47_0.png)
+    
 
 
 
+    
 ![png](index_files/index_47_1.png)
+    
 
 
 Interesting! Take a crack at interpreting these graphs by answering the following questions below:
