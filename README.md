@@ -26,6 +26,8 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 from sklearn.manifold import TSNE
 from nltk.tokenize import word_tokenize
+import nltk
+nltk.download('punkt', quiet=True)
 np.random.seed(0)
 ```
 
