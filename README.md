@@ -26,6 +26,8 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 from sklearn.manifold import TSNE
 from nltk.tokenize import word_tokenize
+import nltk
+nltk.download('punkt', quiet=True)
 np.random.seed(0)
 ```
 
@@ -257,7 +259,7 @@ test_vectorized = count_vectorize(tokenized_test_song)
 print(test_vectorized)
 ```
 
-    {'conversation': 1, 'to': 6, 'know': 9, 'days': 1, 'down': 1, 'story': 1, 'im': 3, 'good': 1, 'even': 2, 'stars': 18, 'dont': 2, 'stay': 1, 'youre': 1, 'making': 1, 'feeling': 7, 'nobody': 1, 'night': 6, 'congratulations': 1, 'me': 14, 'all': 22, 'ever': 1, 'endorsin': 1, 'credit': 1, 'look': 1, 'thanks': 1, 'tell': 1, 'nothin': 1, 'find': 1, 'you': 34, 'on': 1, 'were': 1, 'bullet': 1, 'important': 1, 'haunt': 6, 'confrontation': 1, 'crazy': 1, 'gift': 1, 'get': 2, 'let': 6, 'time': 1, 'false': 1, 'in': 2, 'love': 6, 'losin': 1, 'new': 1, 'realest': 1, 'confidence': 1, 'be': 6, 'entitled': 1, 'corrupt': 1, 'are': 9, 'dreams': 6, 'closer': 9, 'at': 2, 'reason': 3, 'what': 1, 'gon': 1, 'tryna': 1, 'people': 1, 'mans': 1, 'sword': 1, 'life': 2, 'thats': 2, 'just': 2, 'want': 2, 'prayin': 1, 'how': 1, 'better': 1, 'dealin': 1, 'with': 3, 'it': 7, 'kinda': 1, 'give': 1, 'end': 1, 'small': 1, 'from': 1, 'percentage': 1, 'bring': 4, 'can': 1, 'might': 6, 'live': 1, 'shit': 1, 'did': 1, 'game': 1, 'its': 1, 'way': 2, 'that': 8, 'ego': 1, 'this': 6, 'but': 1, 'truth': 1, 'rebound': 1, 'promises': 1, 'or': 4, 'loved': 1, 'motherfucker': 1, 'hate': 1, 'oh': 1, 'the': 38, 'covered': 1, 'cryin': 1, 'aint': 4, 'buildin': 1, 'do': 8, 'invite': 1, 'for': 7, 'your': 5, 'is': 3, 'calculated': 1, 'fuck': 1, 'like': 6, 'breathin': 1, 'lets': 3, 'talk': 3, 'my': 7, 'if': 3, 'runnin': 1, 'feel': 4, 'of': 1, 'expectations': 1, 'talkin': 1, 'ya': 1, 'hours': 1, 'a': 7, 'another': 2, 'cant': 1, 'got': 3, 'about': 3, 'moral': 1, 'out': 2, 'momma': 1, 'winnin': 1, 'morgue': 1, 'involved': 1, 'i': 15, 'recognize': 1, 'and': 6, 'cause': 2, 'everything': 3, 'approach': 9, 'away': 1, 'wont': 1, 'bad': 1, 'who': 2, 'skin': 1, 'move': 1, 'may': 6, 'anything': 3, 'no': 4, 'hoped': 3, 'wouldnt': 1, 'heart': 1}
+    {'let': 6, 'prayin': 1, 'of': 1, 'got': 3, 'crazy': 1, 'rebound': 1, 'morgue': 1, 'that': 8, 'thanks': 1, 'if': 3, 'love': 6, 'give': 1, 'winnin': 1, 'losin': 1, 'tell': 1, 'ya': 1, 'dreams': 6, 'way': 2, 'it': 7, 'wont': 1, 'out': 2, 'approach': 9, 'reason': 3, 'on': 1, 'ego': 1, 'just': 2, 'who': 2, 'hoped': 3, 'confrontation': 1, 'endorsin': 1, 'days': 1, 'congratulations': 1, 'covered': 1, 'realest': 1, 'nobody': 1, 'from': 1, 'can': 1, 'find': 1, 'another': 2, 'corrupt': 1, 'everything': 3, 'dont': 2, 'people': 1, 'gift': 1, 'even': 2, 'with': 3, 'do': 8, 'bullet': 1, 'were': 1, 'small': 1, 'talk': 3, 'oh': 1, 'be': 6, 'bring': 4, 'moral': 1, 'im': 3, 'live': 1, 'making': 1, 'haunt': 6, 'anything': 3, 'did': 1, 'important': 1, 'at': 2, 'shit': 1, 'expectations': 1, 'involved': 1, 'new': 1, 'might': 6, 'me': 14, 'cause': 2, 'away': 1, 'the': 38, 'wouldnt': 1, 'calculated': 1, 'in': 2, 'loved': 1, 'dealin': 1, 'all': 22, 'end': 1, 'breathin': 1, 'thats': 2, 'closer': 9, 'get': 2, 'this': 6, 'stay': 1, 'bad': 1, 'for': 7, 'like': 6, 'truth': 1, 'i': 15, 'recognize': 1, 'conversation': 1, 'look': 1, 'runnin': 1, 'skin': 1, 'hours': 1, 'you': 34, 'percentage': 1, 'time': 1, 'invite': 1, 'a': 7, 'move': 1, 'its': 1, 'about': 3, 'stars': 18, 'feeling': 7, 'hate': 1, 'my': 7, 'tryna': 1, 'but': 1, 'ever': 1, 'gon': 1, 'momma': 1, 'promises': 1, 'may': 6, 'down': 1, 'youre': 1, 'story': 1, 'is': 3, 'game': 1, 'mans': 1, 'talkin': 1, 'good': 1, 'kinda': 1, 'know': 9, 'lets': 3, 'and': 6, 'night': 6, 'want': 2, 'aint': 4, 'motherfucker': 1, 'life': 2, 'are': 9, 'credit': 1, 'what': 1, 'feel': 4, 'sword': 1, 'better': 1, 'no': 4, 'heart': 1, 'entitled': 1, 'buildin': 1, 'to': 6, 'or': 4, 'confidence': 1, 'false': 1, 'cant': 1, 'fuck': 1, 'your': 5, 'cryin': 1, 'nothin': 1, 'how': 1}
 
 
 Great! You've just successfully vectorized your first text document! Now, let's look at a more advanced type of vectorization, TF-IDF!
@@ -287,7 +289,7 @@ test = term_frequency(test_vectorized)
 print(list(test)[10:20])
 ```
 
-    ['dont', 'stay', 'youre', 'making', 'feeling', 'nobody', 'night', 'congratulations', 'me', 'all']
+    ['love', 'give', 'winnin', 'losin', 'tell', 'ya', 'dreams', 'way', 'it', 'wont']
 
 
 Now that we have this, we can easily calculate _Inverse Document Frequency_.  In the cell below, complete the following function.  this function should take in the list of dictionaries, with each item in the list being a bag of words representing the words in a different song. The function should return a dictionary containing the inverse document frequency values for each word.  
@@ -392,7 +394,7 @@ tf_idf_all_docs = main(filenames)
 print(list(tf_idf_all_docs[0])[:10])
 ```
 
-    ['raised', 'runneth', '9', 'to', 'jc', 'know', 'gates', 'passed', 'borderline', 'letters']
+    ['there', 'silver', 'where', 'highway', 'every', 'of', 'now', 'uncle', 'maple', 'that']
 
 
 ### Visualizing our Vectorizations
@@ -433,16 +435,16 @@ tf_idf_vals_list[0][:10]
 
 
 
-    [0.009133330102298753,
-     0.027399990306896257,
-     0.0035369970706513763,
-     0.00012855462252518916,
+    [0.0030174757000650024,
      0.009133330102298753,
-     0.0017878443305199617,
-     0.027399990306896257,
+     0.007416764573429034,
+     0.010372004923396603,
+     0.002193503735949194,
+     0.002163023101141209,
+     0.008339056541109328,
      0.009133330102298753,
      0.009133330102298753,
-     0.009133330102298753]
+     0.00040731561277637825]
 
 
 
