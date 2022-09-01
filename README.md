@@ -28,24 +28,6 @@ from sklearn.manifold import TSNE
 from nltk.tokenize import word_tokenize
 import nltk
 nltk.download('punkt', quiet=True)
-<<<<<<< HEAD
-np.random.seed(0)
-```
-
-
-```python
-# __SOLUTION__ 
-import pandas as pd
-import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
-%matplotlib inline
-from sklearn.manifold import TSNE
-from nltk.tokenize import word_tokenize
-import nltk
-nltk.download('punkt', quiet=True)
-=======
->>>>>>> l-edits
 np.random.seed(0)
 ```
 
@@ -76,15 +58,6 @@ Next, create an empty DataFrame called `songs_df`.  As we read in the songs and 
 
 ```python
 songs_df = None
-<<<<<<< HEAD
-```
-
-
-```python
-# __SOLUTION__ 
-songs_df = pd.DataFrame()
-=======
->>>>>>> l-edits
 ```
 
 Next, let's import a single song to see what our text looks like so that we can make sure we clean and tokenize it correctly. 
