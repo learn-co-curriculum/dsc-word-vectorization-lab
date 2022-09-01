@@ -28,6 +28,24 @@ from sklearn.manifold import TSNE
 from nltk.tokenize import word_tokenize
 import nltk
 nltk.download('punkt', quiet=True)
+<<<<<<< HEAD
+np.random.seed(0)
+```
+
+
+```python
+# __SOLUTION__ 
+import pandas as pd
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn.manifold import TSNE
+from nltk.tokenize import word_tokenize
+import nltk
+nltk.download('punkt', quiet=True)
+=======
+>>>>>>> l-edits
 np.random.seed(0)
 ```
 
@@ -42,6 +60,15 @@ To make it easy to read in all of the documents, use a list comprehension to cre
 
 ```python
 filenames = None
+<<<<<<< HEAD
+```
+
+
+```python
+# __SOLUTION__ 
+filenames = ['song' + str(i) + '.txt' for i in range(1, 21)]
+=======
+>>>>>>> l-edits
 ```
 
 Next, create an empty DataFrame called `songs_df`.  As we read in the songs and store and clean them, we'll store them in this DataFrame.
@@ -49,6 +76,15 @@ Next, create an empty DataFrame called `songs_df`.  As we read in the songs and 
 
 ```python
 songs_df = None
+<<<<<<< HEAD
+```
+
+
+```python
+# __SOLUTION__ 
+songs_df = pd.DataFrame()
+=======
+>>>>>>> l-edits
 ```
 
 Next, let's import a single song to see what our text looks like so that we can make sure we clean and tokenize it correctly. 
@@ -150,6 +186,7 @@ In the cell below, create a function that takes in a tokenized, cleaned song and
 
 
 ```python
+# __SOLUTION__ 
 def count_vectorize(song, vocab=None):
     pass
 
@@ -188,6 +225,7 @@ $$\large  IDF(t) =  log_e(\frac{Total\ Number\ of\ Documents}{Number\ of\ Docume
 
 
 ```python
+# __SOLUTION__ 
 def inverse_document_frequency(list_of_dicts):
     pass
 ```
@@ -219,6 +257,7 @@ In the cell below, complete the `main()` function.  This function should take in
 
 
 ```python
+# __SOLUTION__ 
 def main(filenames):
     pass
 
@@ -250,6 +289,7 @@ In the cell below, create a list of lists that contains a list representation of
 
 
 ```python
+# __SOLUTION__ 
 tf_idf_vals_list = []
 
 for i in tf_idf_all_docs:
