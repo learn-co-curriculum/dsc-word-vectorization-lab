@@ -28,6 +28,24 @@ from sklearn.manifold import TSNE
 from nltk.tokenize import word_tokenize
 import nltk
 nltk.download('punkt', quiet=True)
+<<<<<<< HEAD
+np.random.seed(0)
+```
+
+
+```python
+# __SOLUTION__ 
+import pandas as pd
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn.manifold import TSNE
+from nltk.tokenize import word_tokenize
+import nltk
+nltk.download('punkt', quiet=True)
+=======
+>>>>>>> l-edits
 np.random.seed(0)
 ```
 
@@ -41,14 +59,32 @@ To make it easy to read in all of the documents, use a list comprehension to cre
 
 
 ```python
+filenames = None
+<<<<<<< HEAD
+```
+
+
+```python
+# __SOLUTION__ 
 filenames = ['song' + str(i) + '.txt' for i in range(1, 21)]
+=======
+>>>>>>> l-edits
 ```
 
 Next, create an empty DataFrame called `songs_df`.  As we read in the songs and store and clean them, we'll store them in this DataFrame.
 
 
 ```python
+songs_df = None
+<<<<<<< HEAD
+```
+
+
+```python
+# __SOLUTION__ 
 songs_df = pd.DataFrame()
+=======
+>>>>>>> l-edits
 ```
 
 Next, let's import a single song to see what our text looks like so that we can make sure we clean and tokenize it correctly. 
@@ -57,13 +93,9 @@ In the cell below, read in and print out the lyrics from `song11.txt`.  Use vani
 
 
 ```python
-with open('data/song11.txt') as f:
-    test_song = f.readlines()
-    print(test_song)
+# Import and print song11.txt
+
 ```
-
-    ['[Kendrick Lamar:]\n', "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n', '[Kendrick Lamar:]\n', "Tell me what you gon' do to me\n", "Confrontation ain't nothin' new to me\n", 'You can bring a bullet, bring a sword, bring a morgue\n', "But you can't bring the truth to me\n", 'Fuck you and all your expectations\n', "I don't even want your congratulations\n", 'I recognize your false confidence\n', 'And calculated promises all in your conversation\n', 'I hate people that feel entitled\n', "Look at me crazy 'cause I ain't invite you\n", 'Oh, you important?\n', "You the moral to the story? You endorsin'?\n", "Motherfucker, I don't even like you\n", "Corrupt a man's heart with a gift\n", "That's how you find out who you dealin' with\n", "A small percentage who I'm buildin' with\n", "I want the credit if I'm losin' or I'm winnin'\n", "On my momma, that's the realest shit\n", "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n', 'Skin covered in ego\n', "Get to talkin' like ya involved, like a rebound\n", 'Got no end game, got no reason\n', "Got to stay down, it's the way that you making me feel\n", 'Like nobody ever loved me like you do, you do\n', "You kinda feeling like you're tryna get away from me\n", "If you do, I won't move\n", "I ain't just cryin' for no reason\n", "I ain't just prayin' for no reason\n", 'I give thanks for the days, for the hours\n', "And another way, another life breathin'\n", "I did it all 'cause it feel good\n", "I wouldn't do it at all if it feel bad\n", "Better live your life, we're runnin' out of time\n", '[Kendrick Lamar & SZA:]\n', "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n']
-
 
 ### Tokenizing our Data
 
@@ -93,110 +125,22 @@ Test the function on `test_song` to show that it has successfully removed `'[Ken
 
 ```python
 def clean_song(song):
-    cleaned_song = []
-    for line in song:
-        if not '[' in line and  not ']' in line:
-            for symbol in ",.?!''\n":
-                line = line.replace(symbol, '').lower()
-            cleaned_song.append(line)
+    pass
 
-    return cleaned_song
-
-song_without_brackets = clean_song(test_song)
-song_without_brackets
+song_without_brackets = None
+print(song_without_brackets)
 ```
-
-
-
-
-    ['love lets talk about love',
-     'is it anything and everything you hoped for',
-     'or do the feeling haunt you',
-     'i know the feeling haunt you',
-     'this may be the night that my dreams might let me know',
-     'all the stars approach you all the stars approach you all the stars approach you',
-     'this may be the night that my dreams might let me know',
-     'all the stars are closer all the stars are closer all the stars are closer',
-     'tell me what you gon do to me',
-     'confrontation aint nothin new to me',
-     'you can bring a bullet bring a sword bring a morgue',
-     'but you cant bring the truth to me',
-     'fuck you and all your expectations',
-     'i dont even want your congratulations',
-     'i recognize your false confidence',
-     'and calculated promises all in your conversation',
-     'i hate people that feel entitled',
-     'look at me crazy cause i aint invite you',
-     'oh you important',
-     'you the moral to the story you endorsin',
-     'motherfucker i dont even like you',
-     'corrupt a mans heart with a gift',
-     'thats how you find out who you dealin with',
-     'a small percentage who im buildin with',
-     'i want the credit if im losin or im winnin',
-     'on my momma thats the realest shit',
-     'love lets talk about love',
-     'is it anything and everything you hoped for',
-     'or do the feeling haunt you',
-     'i know the feeling haunt you',
-     'this may be the night that my dreams might let me know',
-     'all the stars approach you all the stars approach you all the stars approach you',
-     'this may be the night that my dreams might let me know',
-     'all the stars are closer all the stars are closer all the stars are closer',
-     'skin covered in ego',
-     'get to talkin like ya involved like a rebound',
-     'got no end game got no reason',
-     'got to stay down its the way that you making me feel',
-     'like nobody ever loved me like you do you do',
-     'you kinda feeling like youre tryna get away from me',
-     'if you do i wont move',
-     'i aint just cryin for no reason',
-     'i aint just prayin for no reason',
-     'i give thanks for the days for the hours',
-     'and another way another life breathin',
-     'i did it all cause it feel good',
-     'i wouldnt do it at all if it feel bad',
-     'better live your life were runnin out of time',
-     'love lets talk about love',
-     'is it anything and everything you hoped for',
-     'or do the feeling haunt you',
-     'i know the feeling haunt you',
-     'this may be the night that my dreams might let me know',
-     'all the stars approach you all the stars approach you all the stars approach you',
-     'this may be the night that my dreams might let me know',
-     'all the stars are closer all the stars are closer all the stars are closer']
-
-
 
 Great. Now, write a function `tokenize()` that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `word_tokenize()` on it to get a fully tokenized version of the song.  Test this function on `song_without_brackets` to ensure that the function works. 
 
 
 ```python
 def tokenize(song):
-    joined_song = ' '.join(song)
-    tokenized_song = word_tokenize(joined_song)
-    
-    return tokenized_song
+    pass
 
-tokenized_test_song = tokenize(song_without_brackets)
+tokenized_test_song = None
 tokenized_test_song[:10]
 ```
-
-
-
-
-    ['love',
-     'lets',
-     'talk',
-     'about',
-     'love',
-     'is',
-     'it',
-     'anything',
-     'and',
-     'everything']
-
-
 
 Great! Now that we can tokenize our songs, we can move onto vectorization. 
 
@@ -242,25 +186,13 @@ In the cell below, create a function that takes in a tokenized, cleaned song and
 
 
 ```python
+# __SOLUTION__ 
 def count_vectorize(song, vocab=None):
-    if vocab:
-        unique_words = vocab
-    else:
-        unique_words = list(set(song))
-    
-    song_dict = {i:0 for i in unique_words}
-    
-    for word in song:
-        song_dict[word] += 1
-    
-    return song_dict
+    pass
 
-test_vectorized = count_vectorize(tokenized_test_song)
+test_vectorized = None
 print(test_vectorized)
 ```
-
-    {'let': 6, 'prayin': 1, 'of': 1, 'got': 3, 'crazy': 1, 'rebound': 1, 'morgue': 1, 'that': 8, 'thanks': 1, 'if': 3, 'love': 6, 'give': 1, 'winnin': 1, 'losin': 1, 'tell': 1, 'ya': 1, 'dreams': 6, 'way': 2, 'it': 7, 'wont': 1, 'out': 2, 'approach': 9, 'reason': 3, 'on': 1, 'ego': 1, 'just': 2, 'who': 2, 'hoped': 3, 'confrontation': 1, 'endorsin': 1, 'days': 1, 'congratulations': 1, 'covered': 1, 'realest': 1, 'nobody': 1, 'from': 1, 'can': 1, 'find': 1, 'another': 2, 'corrupt': 1, 'everything': 3, 'dont': 2, 'people': 1, 'gift': 1, 'even': 2, 'with': 3, 'do': 8, 'bullet': 1, 'were': 1, 'small': 1, 'talk': 3, 'oh': 1, 'be': 6, 'bring': 4, 'moral': 1, 'im': 3, 'live': 1, 'making': 1, 'haunt': 6, 'anything': 3, 'did': 1, 'important': 1, 'at': 2, 'shit': 1, 'expectations': 1, 'involved': 1, 'new': 1, 'might': 6, 'me': 14, 'cause': 2, 'away': 1, 'the': 38, 'wouldnt': 1, 'calculated': 1, 'in': 2, 'loved': 1, 'dealin': 1, 'all': 22, 'end': 1, 'breathin': 1, 'thats': 2, 'closer': 9, 'get': 2, 'this': 6, 'stay': 1, 'bad': 1, 'for': 7, 'like': 6, 'truth': 1, 'i': 15, 'recognize': 1, 'conversation': 1, 'look': 1, 'runnin': 1, 'skin': 1, 'hours': 1, 'you': 34, 'percentage': 1, 'time': 1, 'invite': 1, 'a': 7, 'move': 1, 'its': 1, 'about': 3, 'stars': 18, 'feeling': 7, 'hate': 1, 'my': 7, 'tryna': 1, 'but': 1, 'ever': 1, 'gon': 1, 'momma': 1, 'promises': 1, 'may': 6, 'down': 1, 'youre': 1, 'story': 1, 'is': 3, 'game': 1, 'mans': 1, 'talkin': 1, 'good': 1, 'kinda': 1, 'know': 9, 'lets': 3, 'and': 6, 'night': 6, 'want': 2, 'aint': 4, 'motherfucker': 1, 'life': 2, 'are': 9, 'credit': 1, 'what': 1, 'feel': 4, 'sword': 1, 'better': 1, 'no': 4, 'heart': 1, 'entitled': 1, 'buildin': 1, 'to': 6, 'or': 4, 'confidence': 1, 'false': 1, 'cant': 1, 'fuck': 1, 'your': 5, 'cryin': 1, 'nothin': 1, 'how': 1}
-
 
 Great! You've just successfully vectorized your first text document! Now, let's look at a more advanced type of vectorization, TF-IDF!
 
@@ -278,19 +210,11 @@ Complete the following function below to calculate term frequency for every term
 
 ```python
 def term_frequency(BoW_dict):
-    total_word_count = sum(BoW_dict.values())
-    
-    for ind, val in BoW_dict.items():
-        BoW_dict[ind] = val/ total_word_count
-    
-    return BoW_dict
+    pass
 
-test = term_frequency(test_vectorized)
+test = None
 print(list(test)[10:20])
 ```
-
-    ['love', 'give', 'winnin', 'losin', 'tell', 'ya', 'dreams', 'way', 'it', 'wont']
-
 
 Now that we have this, we can easily calculate _Inverse Document Frequency_.  In the cell below, complete the following function.  this function should take in the list of dictionaries, with each item in the list being a bag of words representing the words in a different song. The function should return a dictionary containing the inverse document frequency values for each word.  
 
@@ -301,32 +225,9 @@ $$\large  IDF(t) =  log_e(\frac{Total\ Number\ of\ Documents}{Number\ of\ Docume
 
 
 ```python
+# __SOLUTION__ 
 def inverse_document_frequency(list_of_dicts):
-    vocab_set = set()
-    # Iterate through list of dfs and add index to vocab_set
-    for d in list_of_dicts:
-        for word in d.keys():
-            vocab_set.add(word)
-    
-    # Once vocab set is complete, create an empty dictionary with a key for each word and value of 0.
-    full_vocab_dict = {i:0 for i in vocab_set}
-    
-    # Loop through each word in full_vocab_dict
-    for word, val in full_vocab_dict.items():
-        docs = 0
-        
-        # Loop through list of dicts.  Each time a dictionary contains the word, increment docs by 1
-        for d in list_of_dicts:
-            if word in d:
-                docs += 1
-        
-        # Now that we know denominator for equation, compute and set IDF value for word
-        
-        full_vocab_dict[word] = np.log((len(list_of_dicts)/ float(docs)))
-    
-    return full_vocab_dict
-
-
+    pass
 ```
 
 ### Computing TF-IDF
@@ -340,22 +241,7 @@ In the cell below, complete the `tf_idf()` function.  This function should take 
 
 ```python
 def tf_idf(list_of_dicts):
-    # Create empty dictionary containing full vocabulary of entire corpus
-    doc_tf_idf = {}
-    idf = inverse_document_frequency(list_of_dicts)
-    full_vocab_list = {i:0 for i in list(idf.keys())}
-    
-    # Create tf-idf list of dictionaries, containing a dictionary that will be updated for each document
-    tf_idf_list_of_dicts = []
-    
-    # Now, compute tf and then use this to compute and set tf-idf values for each document
-    for doc in list_of_dicts:
-        doc_tf = term_frequency(doc)
-        for word in doc_tf:
-            doc_tf_idf[word] = doc_tf[word] * idf[word]
-        tf_idf_list_of_dicts.append(doc_tf_idf)
-    
-    return tf_idf_list_of_dicts
+    pass
 ```
 
 ### Vectorizing All Documents
@@ -371,31 +257,13 @@ In the cell below, complete the `main()` function.  This function should take in
 
 
 ```python
+# __SOLUTION__ 
 def main(filenames):
-    # Iterate through list of filenames and read each in
-    count_vectorized_all_documents = []
-    for file in filenames:
-        with open('data/' + file) as f:
-            raw_data = f.readlines()
-        # Clean and tokenize raw text
-        cleaned = clean_song(raw_data)
-        tokenized = tokenize(cleaned)
-        
-        # Get count vectorized representation and store in count_vectorized_all_documents  
-        count_vectorized_document = count_vectorize(tokenized)
-        count_vectorized_all_documents.append(count_vectorized_document)
-    
-    # Now that we have a list of BoW respresentations of each song, create a tf-idf representation of everything
-    tf_idf_all_docs = tf_idf(count_vectorized_all_documents)
-    
-    return tf_idf_all_docs
+    pass
 
-tf_idf_all_docs = main(filenames)
+tf_idf_all_docs = None
 print(list(tf_idf_all_docs[0])[:10])
 ```
-
-    ['there', 'silver', 'where', 'highway', 'every', 'of', 'now', 'uncle', 'maple', 'that']
-
 
 ### Visualizing our Vectorizations
 
@@ -407,12 +275,9 @@ In the cell below, examine our dataset to figure out how many dimensions our dat
 
 
 ```python
-num_dims = len(tf_idf_all_docs[0])
+num_dims = None
 print("Number of Dimensions: {}".format(num_dims))
 ```
-
-    Number of Dimensions: 1344
-
 
 There are too many dimensions for us to visualize! In order to make it understandable to human eyes, we'll need to reduce it to 2 or 3 dimensions.  
 
@@ -424,6 +289,7 @@ In the cell below, create a list of lists that contains a list representation of
 
 
 ```python
+# __SOLUTION__ 
 tf_idf_vals_list = []
 
 for i in tf_idf_all_docs:
@@ -432,107 +298,39 @@ for i in tf_idf_all_docs:
 tf_idf_vals_list[0][:10]
 ```
 
-
-
-
-    [0.0030174757000650024,
-     0.009133330102298753,
-     0.007416764573429034,
-     0.010372004923396603,
-     0.002193503735949194,
-     0.002163023101141209,
-     0.008339056541109328,
-     0.009133330102298753,
-     0.009133330102298753,
-     0.00040731561277637825]
-
-
-
 Now that we have only the values, we can use the `TSNE()` class from `sklearn` to transform our data appropriately.  In the cell below, instantiate `TSNE()` with `n_components=3`.  Then, use the created object's `.fit_transform()` method to transform the data stored in `tf_idf_vals_list` into 3-dimensional data.  Then, inspect the newly transformed data to confirm that it has the correct dimensionality. 
 
 
 ```python
-t_sne_object_3d = TSNE(n_components=3)
-transformed_data_3d = t_sne_object_3d.fit_transform(tf_idf_vals_list)
+t_sne_object_3d = None
+transformed_data_3d = None
 transformed_data_3d
 ```
-
-
-
-
-    array([[ -85.04439  ,  -12.42539  ,  160.53555  ],
-           [  -3.4193013, -217.31935  ,   23.678131 ],
-           [-181.40318  ,   37.18949  , -279.00134  ],
-           [-168.894    ,  165.66945  ,   74.69088  ],
-           [ 174.79863  ,  -41.690086 ,  301.93756  ],
-           [  38.269165 ,  151.16583  ,   93.36936  ],
-           [  31.328133 , -244.56982  , -167.79346  ],
-           [  27.850698 ,   95.67248  ,  277.84744  ],
-           [-125.99564  ,   96.77036  , -110.62522  ],
-           [ 250.55006  ,  192.88551  , -168.65764  ],
-           [-146.47461  , -198.77888  ,  159.63432  ],
-           [ 146.62701  ,   29.345417 , -164.25223  ],
-           [ 192.62463  , -140.5079   ,  -58.02724  ],
-           [ 174.86421  ,  246.83163  ,   14.580853 ],
-           [  19.869684 ,  211.12953  , -123.161224 ],
-           [-216.70706  ,  -50.75892  ,    5.941306 ],
-           [-107.28444  , -112.47715  , -158.13704  ],
-           [ 247.58127  ,   34.86669  ,   84.8679   ],
-           [  21.53436  ,   -9.539048 ,  -21.645472 ],
-           [ 107.66281  , -111.01468  ,  139.19974  ]], dtype=float32)
-
-
 
 We'll also want to check out how the visualization looks in 2d.  Repeat the process above, but this time, instantiate `TSNE()` with 2 components instead of 3.  Again, use `.fit_transform()` to transform the data and store it in the variable below, and then inspect it to confirm the transformed data has only 2 dimensions. 
 
 
 ```python
-t_sne_object_2d = TSNE(n_components=2)
-transformed_data_2d = t_sne_object_2d.fit_transform(tf_idf_vals_list)
+t_sne_object_2d = None
+transformed_data_2d = None
 transformed_data_2d
 ```
-
-
-
-
-    array([[ -57.13      ,  -82.44527   ],
-           [-149.95668   , -100.78645   ],
-           [  17.649107  ,  127.99021   ],
-           [-136.68973   ,   99.35129   ],
-           [ 211.75693   ,   81.607994  ],
-           [ 197.99387   ,  -44.276165  ],
-           [ 135.04065   ,   29.907883  ],
-           [  55.82382   ,  212.21283   ],
-           [ -67.15371   ,  175.84656   ],
-           [ -93.41145   ,   -1.3688639 ],
-           [  -0.96264917,  -14.616862  ],
-           [ -57.00879   , -177.24257   ],
-           [-185.9646    ,    5.108982  ],
-           [  87.43467   ,  -41.514145  ],
-           [ -43.565823  ,   67.657135  ],
-           [  53.59356   , -193.05151   ],
-           [  29.162214  , -103.39789   ],
-           [  51.815746  ,   49.444122  ],
-           [ 118.36375   ,  128.68997   ],
-           [ 136.48239   , -126.846825  ]], dtype=float32)
-
-
 
 Now, let's visualize everything!  Run the cell below to view both 3D and 2D visualizations of the songs.
 
 
 ```python
-kendrick_3d = transformed_data_3d[10:]
+kendrick_3d = transformed_data_3d[:10]
 k3_x = [i[0] for i in kendrick_3d]
 k3_y = [i[1] for i in kendrick_3d]
 k3_z = [i[2] for i in kendrick_3d]
 
-garth_3d = transformed_data_3d[:10]
+garth_3d = transformed_data_3d[10:]
 g3_x = [i[0] for i in garth_3d]
 g3_y = [i[1] for i in garth_3d]
 g3_z = [i[2] for i in garth_3d]
 
-fig = plt.figure(figsize=(20,10))
+fig = plt.figure(figsize=(10,5))
 ax = fig.add_subplot(111, projection='3d')
 ax.scatter(k3_x, k3_y, k3_z, c='b', s=60, label='Kendrick')
 ax.scatter(g3_x, g3_y, g3_z, c='red', s=60, label='Garth')
@@ -555,18 +353,6 @@ ax.scatter(g2_x, g2_y, c='red', label='Garth')
 ax.legend()
 plt.show()
 ```
-
-
-    
-![png](index_files/index_31_0.png)
-    
-
-
-
-    
-![png](index_files/index_31_1.png)
-    
-
 
 Interesting! Take a crack at interpreting these graphs by answering the following questions below:
 
