@@ -209,7 +209,7 @@ test_song
 
 ### Tokenizing our Data
 
-Before we can create a bag of words or vectorize each document, we need to clean it up and split each song into an array of individual words. Our goal is to tken 
+Before we can create a bag of words or vectorize each document, we need to clean it up and split each song into an array of individual words.
 
 Consider the following sentences from the example above:
 
